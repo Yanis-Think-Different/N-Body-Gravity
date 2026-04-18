@@ -5,6 +5,9 @@
 #define LARGEUR 1280
 #define HAUTEUR 720
 
+// Constante Physique
+const double GRAVITATIONAL_CONSTANT = 6.674e-11;
+
 int main(int argc, char* argv[]) {
 	srand((unsigned int)time(NULL));
 
@@ -32,6 +35,7 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
+	// Boucle
 	while (running) {
         while (SDL_PollEvent(&ev) != 0) {
             switch (ev.type) {
