@@ -4,6 +4,7 @@
 
 #define LARGEUR 1280
 #define HAUTEUR 720
+#define INCREMENT_PLACE 5
 
 // Constante Physique
 const double GRAVITATIONAL_CONSTANT = 6.674e-11;
