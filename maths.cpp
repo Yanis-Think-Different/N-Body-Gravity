@@ -44,8 +44,10 @@ Vector normalisation(Vector a){
     return base;
 }
 
-double distance_entre_vecteur(Vector un, Vector deux){
-
+double distance_entre_vecteur(Vector un, Vector deux) {
+    double new_x = deux.x - un.x;
+    double new_y = deux.y - un.y;
+    return std::sqrt(new_x * new_x + new_y * new_y);
 }
 
 Vector calcule_vecteur_champs_gravitionnel(Corps &actuelle, Tableau_de_Corps &tous_les_corps, const double g){
@@ -53,4 +55,6 @@ Vector calcule_vecteur_champs_gravitionnel(Corps &actuelle, Tableau_de_Corps &to
     for (int i = 0; i < tous_les_corps.nb_corps; i++){
 
     }
+
+    return acceleration;
 }

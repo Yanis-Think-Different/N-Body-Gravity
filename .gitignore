@@ -1,0 +1,27 @@
+# Visual Studio
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.db
+*.opendb
+
+# Compilation (Windows/Visual Studio)
+Debug/
+Release/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+
+# SDL2 et Binaires
+*.dll
+*.lib
+*.pdb
+*.exe
+
+# Linux
+*.o
+*.out
+.cache/
