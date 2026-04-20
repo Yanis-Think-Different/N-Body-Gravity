@@ -29,7 +29,7 @@ public:
         acceleration = a;
     }
 
-    void update_corps(double dt, Tableau_de_Corps &tous_les_corps);
+    void update_corps(double dt, const Tableau_de_Corps &tous_les_corps, const double g);
 };
 
 class Tableau_de_Corps{
