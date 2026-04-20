@@ -6,11 +6,19 @@
 class Corps;
 class Tableau_de_Corps;
 
+class Color{
+public:
+    int r;
+    int g;
+    int b;
+};
+
 class Corps{
 public:
     Vector speed;
     Vector acceleration;
     Vector position;
+    Color couleur;
     double mass;
     double rayon;
 
@@ -49,5 +57,7 @@ public:
         }
     }
 };
+
+
 
 #endif

@@ -37,6 +37,24 @@ double distance_entre_vecteur(const Vector &un, const Vector &deux) {
     return std::sqrt(new_x * new_x + new_y * new_y);
 }
 
+Vector calcule_position_methode_verlet(const Corps &actuelle, const double dt){
+    Vector position_verlet = Vector();
+    Vector vitesse_upt = multiplication_vecteur_valeur(actuelle.speed, dt);
+    Vector acceleration_upt = multiplication_vecteur_valeur(multiplication_vecteur_valeur(actuelle.acceleration, dt*dt), 0.5);
+    position_verlet = addition_entre_vecteur(actuelle.position, addition_entre_vecteur(vitesse_upt, acceleration_upt));
+
+    return position_verlet;
+}
+
+Vector calcule_vitesse_methode_verlet(Vector ancienne_acceleration, const Corps &actuelle, const double dt){
+    Vector speed_verlet = Vector();
+    Vector addition_entre_accelerations = addition_entre_vecteur(ancienne_acceleration, actuelle.acceleration);
+    Vector acceleration_upt = multiplication_vecteur_valeur(multiplication_vecteur_valeur(addition_entre_accelerations, dt), 0.5);
+    speed_verlet = addition_entre_vecteur(actuelle.speed, acceleration_upt);
+
+    return speed_verlet;
+}
+
 Vector calcule_vecteur_champs_gravitionnel(const Corps &actuelle, const Tableau_de_Corps &tous_les_corps, const double g){
     Vector acceleration_corps_actuelle = Vector();
     for (int i = 0; i < tous_les_corps.nb_corps; i++){
