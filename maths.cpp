@@ -74,3 +74,27 @@ Vector calcule_vecteur_champs_gravitionnel(const Corps &actuelle, const Tableau_
 
     return acceleration_corps_actuelle;
 }
+
+Corps *fusion_deux_corps(Corps &un, Corps &deux){
+    double new_mass = un.mass + deux.mass;
+    double new_rayon = std::sqrt(un.rayon*un.rayon + deux.rayon*deux.rayon);
+    Vector new_position =   multiplication_vecteur_valeur(
+                                addition_entre_vecteur(
+                                    multiplication_vecteur_valeur(un.position, un.mass),
+                                    multiplication_vecteur_valeur(deux.position, deux.mass)),
+                            1/new_mass);
+    Vector new_speed    =   multiplication_vecteur_valeur(
+                                addition_entre_vecteur(
+                                    multiplication_vecteur_valeur(un.speed, un.mass),
+                                    multiplication_vecteur_valeur(deux.speed, deux.mass)),
+                            1/new_mass);
+    Vector new_acc      =   multiplication_vecteur_valeur(
+                                addition_entre_vecteur(
+                                    multiplication_vecteur_valeur(un.acceleration, un.mass),
+                                    multiplication_vecteur_valeur(deux.acceleration, deux.mass)),
+                            1/new_mass);
+
+    Corps *nouveau_corps = new Corps(new_mass, new_rayon, new_speed, new_position, new_acc);
+
+    return nouveau_corps;
+}
