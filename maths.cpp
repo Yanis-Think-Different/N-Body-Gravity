@@ -75,6 +75,16 @@ Vector calcule_vecteur_champs_gravitionnel(const Corps &actuelle, const Tableau_
     return acceleration_corps_actuelle;
 }
 
+bool collide_corps(const Corps &un, const Corps &deux){
+    double dx = deux.position.x - un.position.x;
+    double dy = deux.position.y - un.position.y;
+    double distance_carree = dx*dx + dy*dy;
+    double somme_rayons = un.rayon + deux.rayon;
+
+    if (distance_carree < (somme_rayons * somme_rayons)) return true;
+    return false;
+}
+
 Corps *fusion_deux_corps(Corps &un, Corps &deux){
     double new_mass = un.mass + deux.mass;
     double new_rayon = std::sqrt(un.rayon*un.rayon + deux.rayon*deux.rayon);
