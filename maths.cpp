@@ -2,7 +2,6 @@
 #include "corps.hpp"
 #include "vector.hpp"
 #include <cmath>
-#include <complex>
 #include <vector>
 
 Vector addition_entre_vecteur(Vector un, Vector deux) {
@@ -20,7 +19,7 @@ Vector soustration_entre_vecteur(Vector un, Vector deux){
     return base;
 }
 
-Vector mutliplcation_vecteur_valeur(Vector a, double valeur){
+Vector multiplication_vecteur_valeur(Vector a, double valeur){
     Vector base = a;
     base.x *= valeur;
     base.y *= valeur;
