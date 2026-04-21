@@ -2,6 +2,7 @@
 #include "corps.hpp"
 #include "vector.hpp"
 #include <cmath>
+#include <iostream>
 
 Vector addition_entre_vecteur(const Vector &un, const Vector &deux) {
     Vector base = un;
@@ -75,13 +76,20 @@ Vector calcule_vecteur_champs_gravitionnel(const Corps &actuelle, const Tableau_
     return acceleration_corps_actuelle;
 }
 
-bool collide_corps(const Corps &un, const Corps &deux){
-    double dx = deux.position.x - un.position.x;
-    double dy = deux.position.y - un.position.y;
-    double distance_carree = dx*dx + dy*dy;
-    double somme_rayons = un.rayon + deux.rayon;
+bool collide_corps(const Corps *un, const Corps *deux){
+    if (!un || !deux) {
+        std::cerr << "Probleme Collide fonction" << std::endl;
+        return false;
+    }
 
-    if (distance_carree < (somme_rayons * somme_rayons)) return true;
+    double dx = deux->position.x - un->position.x;
+    double dy = deux->position.y - un->position.y;
+    double distance_carree = dx*dx + dy*dy;
+    double somme_rayons = un->rayon + deux->rayon;
+
+    if (distance_carree < (somme_rayons * somme_rayons))
+        return true;
+
     return false;
 }
 
@@ -92,19 +100,34 @@ Corps *fusion_deux_corps(Corps &un, Corps &deux){
                                 addition_entre_vecteur(
                                     multiplication_vecteur_valeur(un.position, un.mass),
                                     multiplication_vecteur_valeur(deux.position, deux.mass)),
-                            1/new_mass);
+                                1/new_mass);
     Vector new_speed    =   multiplication_vecteur_valeur(
                                 addition_entre_vecteur(
                                     multiplication_vecteur_valeur(un.speed, un.mass),
                                     multiplication_vecteur_valeur(deux.speed, deux.mass)),
-                            1/new_mass);
+                                1/new_mass);
     Vector new_acc      =   multiplication_vecteur_valeur(
                                 addition_entre_vecteur(
                                     multiplication_vecteur_valeur(un.acceleration, un.mass),
                                     multiplication_vecteur_valeur(deux.acceleration, deux.mass)),
-                            1/new_mass);
+                                1/new_mass);
 
     Corps *nouveau_corps = new Corps(new_mass, new_rayon, new_speed, new_position, new_acc);
 
     return nouveau_corps;
+}
+
+void boucle_de_verification_fusion(Tableau_de_Corps &tous_les_corps){
+    for (int i = 0; i < tous_les_corps.nb_corps; i++){
+        for (int j = 0; j < tous_les_corps.nb_corps; j++){
+            if (i == j)
+                continue;
+            else if (!collide_corps(tous_les_corps.tab[i], tous_les_corps.tab[j]))
+                continue;
+            else{
+                Corps *new_corps = fusion_deux_corps(*tous_les_corps.tab[i], *tous_les_corps.tab[j]);
+                tous_les_corps.maj_tab_apres_fusion(i, j, new_corps);
+            }
+        }
+    }
 }

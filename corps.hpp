@@ -56,6 +56,8 @@ public:
             tab[i] = nullptr;
         }
     }
+
+    void maj_tab_apres_fusion(int i, int j, Corps *corps_fusionne);
 };
 
 
