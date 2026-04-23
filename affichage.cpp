@@ -1,6 +1,6 @@
 #include "affichage.hpp"
 #include "corps.hpp"
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 void dessine_cercle(SDL_Renderer *renderer, Corps *actuelle) {
     double x = 0;
