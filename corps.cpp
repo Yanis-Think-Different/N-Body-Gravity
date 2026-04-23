@@ -24,3 +24,12 @@ void Tableau_de_Corps::maj_tab_apres_fusion(int i, int j, Corps *corps_fusionne)
     delete tmp_corps_2;
     nb_corps--;
 }
+
+void Corps::choisis_couleur(double mass_max) {
+    double ratio = mass / mass_max;
+    if (ratio > 1.0) ratio = 1.0;
+
+    this->couleur->r = (int)(255 * ratio);
+    this->couleur->g = 0;
+    this->couleur->b = (int)(255 * (1.0 - ratio));
+}

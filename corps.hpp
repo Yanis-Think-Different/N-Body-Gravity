@@ -2,6 +2,7 @@
 #define CORPS
 
 #include "vector.hpp"
+#include <deque>
 
 class Corps;
 class Tableau_de_Corps;
@@ -18,9 +19,10 @@ public:
     Vector speed;
     Vector acceleration;
     Vector position;
-    Color couleur;
+    Color *couleur;
     double mass;
     double rayon;
+    std::deque<Vector> historique_positions;
 
     Corps(double m, double r, Vector s, Vector p){
         mass = m;
@@ -38,6 +40,7 @@ public:
     }
 
     void update_corps(double dt, const Tableau_de_Corps &tous_les_corps, const double g);
+    void choisis_couleur(double mass_max);
 };
 
 class Tableau_de_Corps{
