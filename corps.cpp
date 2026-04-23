@@ -9,6 +9,17 @@ void Corps::update_corps(const double dt, const Tableau_de_Corps &tous_les_corps
     speed = calcule_vitesse_methode_verlet(ancienne_acceleration, *this, dt);
 }
 
+Tableau_de_Corps::Tableau_de_Corps(int t) {
+    taille = t;
+    nb_corps = 0;
+
+    tab = new Corps * [taille];
+
+    for (int i = 0; i < taille; i++) {
+        tab[i] = nullptr;
+    }
+}
+
 void Tableau_de_Corps::maj_tab_apres_fusion(int i, int j, Corps *corps_fusionne){
     Corps *tmp_corps_1 = this->tab[i];
     Corps *tmp_corps_2 = this->tab[j];
@@ -32,4 +43,26 @@ void Corps::choisis_couleur(double mass_max) {
     this->couleur->r = (int)(255 * ratio);
     this->couleur->g = 0;
     this->couleur->b = (int)(255 * (1.0 - ratio));
+}
+
+Corps::Corps(double m, double r, Vector s, Vector p, Vector a, Color* couleur) {
+    mass = m;
+    rayon = r;
+    speed = s;
+    position = p;
+    acceleration = a;
+    this->couleur->r = couleur->r;
+    this->couleur->g = couleur->g;
+    this->couleur->b = couleur->b;
+}
+
+Corps::Corps(double m, double r, Vector s, Vector p, Color* couleur) {
+    mass = m;
+    rayon = r;
+    speed = s;
+    position = p;
+    acceleration = Vector();
+    this->couleur->r = couleur->r;
+    this->couleur->g = couleur->g;
+    this->couleur->b = couleur->b;
 }
