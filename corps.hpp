@@ -24,10 +24,9 @@ public:
     double rayon;
     std::deque<Vector> historique_positions;
 
-    Corps(double m, double r, Vector s, Vector p, Color* couleur);
-    Corps(double m, double r, Vector s, Vector p, Vector a, Color* couleur);
-    void update_corps(double dt, const Tableau_de_Corps &tous_les_corps, const double g);
-    void choisis_couleur(double mass_max);
+    Corps(double m, double r, Vector s, Vector p);
+    Corps(double m, double r, Vector s, Vector p, Vector a);
+    void update_corps(const double dt, const Tableau_de_Corps &tous_les_corps, const double g, double largeur, double hauteur);
 };
 
 class Tableau_de_Corps{
@@ -35,6 +34,7 @@ public:
     Corps **tab;
     int taille;
     int nb_corps;
+    double mass_max;
 
     Tableau_de_Corps(int t);
     void maj_tab_apres_fusion(int i, int j, Corps *corps_fusionne);

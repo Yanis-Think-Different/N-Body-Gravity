@@ -106,14 +106,9 @@ Corps *fusion_deux_corps(Corps &un, Corps &deux){
                                     multiplication_vecteur_valeur(un.speed, un.mass),
                                     multiplication_vecteur_valeur(deux.speed, deux.mass)),
                                 1/new_mass);
-    Vector new_acc      =   multiplication_vecteur_valeur(
-                                addition_entre_vecteur(
-                                    multiplication_vecteur_valeur(un.acceleration, un.mass),
-                                    multiplication_vecteur_valeur(deux.acceleration, deux.mass)),
-                                1/new_mass);
+    Vector new_acc = Vector(0,0);
 
     Corps *nouveau_corps = new Corps(new_mass, new_rayon, new_speed, new_position, new_acc);
-
     return nouveau_corps;
 }
 

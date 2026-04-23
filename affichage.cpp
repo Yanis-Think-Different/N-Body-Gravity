@@ -1,20 +1,21 @@
 #include "affichage.hpp"
+#include "corps.hpp"
 #include <SDL2/SDL.h>
 
-void dessine_cercle(SDL_Renderer *renderer, int cx, int cy, int r) {
+void dessine_cercle(SDL_Renderer *renderer, Corps *actuelle) {
     double x = 0;
-    double y = -r;
-    double p = -r;
+    double y = -actuelle->rayon;
+    double p = -actuelle->rayon;
 
     while (x < -y) {
-        SDL_RenderDrawPoint(renderer, cx + x, cy + y);
-        SDL_RenderDrawPoint(renderer, cx - x, cy + y);
-        SDL_RenderDrawPoint(renderer, cx + x, cy - y);
-        SDL_RenderDrawPoint(renderer, cx - x, cy - y);
-        SDL_RenderDrawPoint(renderer, cx + y, cy + x);
-        SDL_RenderDrawPoint(renderer, cx - y, cy + x);
-        SDL_RenderDrawPoint(renderer, cx + y, cy - x);
-        SDL_RenderDrawPoint(renderer, cx - y, cy - x);
+        SDL_RenderDrawPoint(renderer, actuelle->position.x + x, actuelle->position.y + y);
+        SDL_RenderDrawPoint(renderer, actuelle->position.x - x, actuelle->position.y + y);
+        SDL_RenderDrawPoint(renderer, actuelle->position.x + x, actuelle->position.y - y);
+        SDL_RenderDrawPoint(renderer, actuelle->position.x - x, actuelle->position.y - y);
+        SDL_RenderDrawPoint(renderer, actuelle->position.x + y, actuelle->position.y + x);
+        SDL_RenderDrawPoint(renderer, actuelle->position.x - y, actuelle->position.y + x);
+        SDL_RenderDrawPoint(renderer, actuelle->position.x + y, actuelle->position.y - x);
+        SDL_RenderDrawPoint(renderer, actuelle->position.x - y, actuelle->position.y - x);
 
         if (p > 0) {
             y += 1;
@@ -26,17 +27,13 @@ void dessine_cercle(SDL_Renderer *renderer, int cx, int cy, int r) {
     }
 }
 
-void dessine_tous_les_corps(SDL_Renderer *renderer, const Tableau_de_Corps &tous_les_corps) {
-    double mass_max = 1.0;
-    for (int i = 0; i < tous_les_corps.nb_corps; i++) {
-        if (tous_les_corps.tab[i]->mass > mass_max)
-            mass_max = tous_les_corps.tab[i]->mass;
-    }
+void choisis_couleur(Corps *corps, double mass_max){
+    double ratio = corps->mass / mass_max;
+    if (ratio > 1.0) ratio = 1.0;
 
-    for (int i = 0; i < tous_les_corps.nb_corps; i++) {
-        Corps *c = tous_les_corps.tab[i];
-        dessine_cercle(renderer, c->position.x, c->position.y, c->rayon);
-    }
+    corps->couleur->r = (int)(255 * ratio);
+    corps->couleur->g = 0;
+    corps->couleur->b = (int)(255 * (1.0 - ratio));
 }
 
 void dessine_trajectoires(SDL_Renderer *renderer, const Tableau_de_Corps &tous_les_corps) {

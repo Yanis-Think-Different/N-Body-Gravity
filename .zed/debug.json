@@ -1,0 +1,12 @@
+[
+  {
+    "label": "Debug My Solar",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "./main",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": {
+      "command": "g++ -Wall main.cpp maths.cpp corps.cpp affichage.cpp -o main -lSDL2 -g",
+    },
+  },
+]
