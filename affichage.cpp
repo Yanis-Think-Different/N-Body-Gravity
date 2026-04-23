@@ -8,14 +8,10 @@ void dessine_cercle(SDL_Renderer *renderer, Corps *actuelle) {
     double p = -actuelle->rayon;
 
     while (x < -y) {
-        SDL_RenderDrawPoint(renderer, actuelle->position.x + x, actuelle->position.y + y);
-        SDL_RenderDrawPoint(renderer, actuelle->position.x - x, actuelle->position.y + y);
-        SDL_RenderDrawPoint(renderer, actuelle->position.x + x, actuelle->position.y - y);
-        SDL_RenderDrawPoint(renderer, actuelle->position.x - x, actuelle->position.y - y);
-        SDL_RenderDrawPoint(renderer, actuelle->position.x + y, actuelle->position.y + x);
-        SDL_RenderDrawPoint(renderer, actuelle->position.x - y, actuelle->position.y + x);
-        SDL_RenderDrawPoint(renderer, actuelle->position.x + y, actuelle->position.y - x);
-        SDL_RenderDrawPoint(renderer, actuelle->position.x - y, actuelle->position.y - x);
+        SDL_RenderDrawLine(renderer, actuelle->position.x - x, actuelle->position.y + y, actuelle->position.x + x, actuelle->position.y + y);
+        SDL_RenderDrawLine(renderer, actuelle->position.x - x, actuelle->position.y - y, actuelle->position.x + x, actuelle->position.y - y);
+        SDL_RenderDrawLine(renderer, actuelle->position.x - y, actuelle->position.y + x, actuelle->position.x + y, actuelle->position.y + x);
+        SDL_RenderDrawLine(renderer, actuelle->position.x - y, actuelle->position.y - x, actuelle->position.x + y, actuelle->position.y - x);
 
         if (p > 0) {
             y += 1;

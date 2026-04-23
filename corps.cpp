@@ -89,3 +89,15 @@ Corps::Corps(double m, double r, Vector s, Vector p) {
     couleur->g = 255;
     couleur->b = 255;
 }
+
+void Tableau_de_Corps::nettoyer() {
+    for (int i = 0; i < taille; i++) {
+        if (tab[i] != nullptr) {
+            delete tab[i];  // appelle ~Corps() automatiquement -> libère couleur
+            tab[i] = nullptr;
+        }
+    }
+    delete[] tab;
+    tab = nullptr;
+    nb_corps = 0;
+}

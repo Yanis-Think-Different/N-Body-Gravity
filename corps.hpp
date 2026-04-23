@@ -23,6 +23,7 @@ public:
     double mass;
     double rayon;
     std::deque<Vector> historique_positions;
+    ~Corps() { delete couleur; }
 
     Corps(double m, double r, Vector s, Vector p);
     Corps(double m, double r, Vector s, Vector p, Vector a);
@@ -38,6 +39,7 @@ public:
 
     Tableau_de_Corps(int t);
     void maj_tab_apres_fusion(int i, int j, Corps *corps_fusionne);
+    void nettoyer();
 };
 
 
