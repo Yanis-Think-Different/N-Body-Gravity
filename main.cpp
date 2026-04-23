@@ -7,8 +7,8 @@
 #include "maths.hpp"
 #include "vector.hpp"
 
-#define LARGEUR 1280
-#define HAUTEUR 720
+#define LARGEUR 1920
+#define HAUTEUR 1080
 #define NB_CORPS 100
 
 // Constante Physique
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
 	Tableau_de_Corps liste_corps = Tableau_de_Corps(NB_CORPS);
 
 	//------------------------------------------------------------Pour du random pure et dure---------------------------------------------------------------//
-	//
+	/*
 	for (int i = 0; i < NB_CORPS; i++){
 	    Vector speed = Vector(rand_vector(gen), rand_vector(gen));
 		Vector position = Vector(rand_posistion_x(gen), rand_posistion_y(gen));
@@ -69,28 +69,38 @@ int main(int argc, char* argv[]) {
 	for (int i = 0; i < liste_corps.nb_corps; i++){
         choisis_couleur(liste_corps.tab[i], liste_corps.mass_max);
 	}
+	*/
 
 	//------------------------------------------------------------Imitation du systeme solaire---------------------------------------------------------------//
-	/*
-    // Soleil - centre
-    liste_corps.tab[0] = new Corps(100000.0, 30.0, Vector(0.0, 0.0),   Vector(640.0, 360.0), Vector());
+
+	// Soleil
+    liste_corps.tab[0] = new Corps(100000.0, 30.0, Vector(0.0, 0.0), Vector(960.0, 540.0), Vector());
     liste_corps.nb_corps++;
 
-    // Mercure - distance 150, vitesse horizontale 577
-    liste_corps.tab[1] = new Corps(10.0, 5.0, Vector(577.0, 0.0),  Vector(640.0, 210.0), Vector());
+    // Mercure - distance 150
+    liste_corps.tab[1] = new Corps(10.0, 5.0, Vector(577.0, 0.0), Vector(960.0, 390.0), Vector());
     liste_corps.nb_corps++;
 
-    // Venus - distance 230, vitesse 466
-    liste_corps.tab[2] = new Corps(20.0, 8.0, Vector(466.0, 0.0),  Vector(640.0, 130.0), Vector());
+    // Venus - distance 280
+    liste_corps.tab[2] = new Corps(20.0, 8.0, Vector(423.0, 0.0), Vector(960.0, 260.0), Vector());
     liste_corps.nb_corps++;
 
-    // Terre - distance 300, vitesse 408
-    liste_corps.tab[3] = new Corps(30.0, 9.0, Vector(408.0, 0.0),  Vector(640.0, 60.0),  Vector());
+    // Terre - distance 400
+    liste_corps.tab[3] = new Corps(30.0, 9.0, Vector(354.0, 0.0), Vector(960.0, 140.0), Vector());
     liste_corps.nb_corps++;
 
-    // Mars - distance 400, vitesse 354
-    liste_corps.tab[4] = new Corps(15.0, 7.0, Vector(354.0, 0.0),  Vector(640.0, -40.0), Vector());
+    // Mars - distance 550
+    liste_corps.tab[4] = new Corps(15.0, 7.0, Vector(302.0, 0.0), Vector(960.0, -10.0), Vector());
     liste_corps.nb_corps++;
+
+    liste_corps.mass_max = 100000.0;
+
+    // Couleurs
+    liste_corps.tab[0]->couleur->r = 255; liste_corps.tab[0]->couleur->g = 255; liste_corps.tab[0]->couleur->b = 0;   // Soleil jaune
+    liste_corps.tab[1]->couleur->r = 169; liste_corps.tab[1]->couleur->g = 169; liste_corps.tab[1]->couleur->b = 169; // Mercure gris
+    liste_corps.tab[2]->couleur->r = 255; liste_corps.tab[2]->couleur->g = 140; liste_corps.tab[2]->couleur->b = 0;   // Venus orange
+    liste_corps.tab[3]->couleur->r = 0;   liste_corps.tab[3]->couleur->g = 100; liste_corps.tab[3]->couleur->b = 255; // Terre bleu
+    liste_corps.tab[4]->couleur->r = 188; liste_corps.tab[4]->couleur->g = 74;  liste_corps.tab[4]->couleur->b = 60;  // Mars rouge
 
     liste_corps.mass_max = 100000.0;
 
@@ -99,7 +109,7 @@ int main(int argc, char* argv[]) {
             *liste_corps.tab[i], liste_corps, GRAVITATIONAL_CONSTANT
         );
     }
-    */
+
 
 	// Boucle
 	while (running) {

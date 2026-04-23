@@ -17,16 +17,16 @@ void Corps::update_corps(const double dt, const Tableau_de_Corps &tous_les_corps
     if (position.x - rayon < 0) {
         position.x = rayon;
         speed.x *= -0.8; // Le 0.8 permet de perdre un peu d'énergie au choc
-    } else if (position.x + rayon > 1280) {
-        position.x = 1280 - rayon;
+    } else if (position.x + rayon > largeur) {
+        position.x = largeur - rayon;
         speed.x *= -0.8;
     }
 
     if (position.y - rayon < 0) {
         position.y = rayon;
         speed.y *= -0.1;
-    } else if (position.y + rayon > 720) {
-        position.y = 720 - rayon;
+    } else if (position.y + rayon > hauteur) {
+        position.y = hauteur - rayon;
         speed.y *= -0.8;
     }
 
