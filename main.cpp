@@ -12,7 +12,7 @@
 #define NB_CORPS 5000
 
 // Constante Physique
-const double GRAVITATIONAL_CONSTANT = 500.0;
+const double GRAVITATIONAL_CONSTANT = 100.0;
 
 int main(int argc, char* argv[]) {
     std::random_device rd;
@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 	SDL_Window* window = NULL;
 	SDL_Renderer* rendu = NULL;
 	SDL_Event ev;
-	double dt = 0.001;
+	double dt = 0.0008;
 
 	std::uniform_real_distribution<double> rand_mass(0.0, 100.0);
 	std::uniform_real_distribution<double> rand_rayon(1.0, 2.0);
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
 	Tableau_de_Corps liste_corps = Tableau_de_Corps(NB_CORPS);
 
 	//------------------------------------------------------------Pour du random pure et dure---------------------------------------------------------------//
-	/*
+
 	for (int i = 0; i < NB_CORPS; i++){
 	    Vector speed = Vector(rand_vector(gen), rand_vector(gen));
 		Vector position = Vector(rand_posistion_x(gen), rand_posistion_y(gen));
@@ -69,10 +69,10 @@ int main(int argc, char* argv[]) {
 	for (int i = 0; i < liste_corps.nb_corps; i++){
         choisis_couleur(liste_corps.tab[i], liste_corps.mass_max);
 	}
-	*/
+
 
 	//------------------------------------------------------------Imitation du systeme solaire---------------------------------------------------------------//
-
+	/*
 	// Soleil
     liste_corps.tab[0] = new Corps(100000.0, 30.0, Vector(0.0, 0.0), Vector(960.0, 540.0), Vector());
     liste_corps.nb_corps++;
@@ -109,7 +109,7 @@ int main(int argc, char* argv[]) {
             *liste_corps.tab[i], liste_corps, GRAVITATIONAL_CONSTANT
         );
     }
-
+    */
 
 	// Boucle
 	while (running) {

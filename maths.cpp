@@ -58,6 +58,7 @@ Vector calcule_vitesse_methode_verlet(Vector ancienne_acceleration, const Corps 
 
 Vector calcule_vecteur_champs_gravitionnel(const Corps &actuelle, const Tableau_de_Corps &tous_les_corps, const double g){
     Vector acceleration_corps_actuelle = Vector();
+    double epsilon = 10.0;
     for (int i = 0; i < tous_les_corps.nb_corps; i++){
         if (&actuelle == tous_les_corps.tab[i])
             continue;
@@ -68,7 +69,7 @@ Vector calcule_vecteur_champs_gravitionnel(const Corps &actuelle, const Tableau_
         double distance = distance_entre_vecteur(actuelle.position, tous_les_corps.tab[i]->position);
 
         Vector acceleration_corps_i = Vector();
-        double valeur_acc = g * tous_les_corps.tab[i]->mass / (distance*distance);
+        double valeur_acc = g * tous_les_corps.tab[i]->mass / (distance*distance + epsilon*epsilon);
         acceleration_corps_i = multiplication_vecteur_valeur(position_normalise, valeur_acc);
         acceleration_corps_actuelle = addition_entre_vecteur(acceleration_corps_actuelle, acceleration_corps_i);
     }
