@@ -9,7 +9,7 @@
 
 #define LARGEUR 1920
 #define HAUTEUR 1080
-#define NB_CORPS 500
+#define NB_CORPS 5000
 
 // Constante Physique
 const double GRAVITATIONAL_CONSTANT = 500.0;
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
 	Tableau_de_Corps liste_corps = Tableau_de_Corps(NB_CORPS);
 
 	//------------------------------------------------------------Pour du random pure et dure---------------------------------------------------------------//
-
+	/*
 	for (int i = 0; i < NB_CORPS; i++){
 	    Vector speed = Vector(rand_vector(gen), rand_vector(gen));
 		Vector position = Vector(rand_posistion_x(gen), rand_posistion_y(gen));
@@ -69,10 +69,10 @@ int main(int argc, char* argv[]) {
 	for (int i = 0; i < liste_corps.nb_corps; i++){
         choisis_couleur(liste_corps.tab[i], liste_corps.mass_max);
 	}
-
+	*/
 
 	//------------------------------------------------------------Imitation du systeme solaire---------------------------------------------------------------//
-    /*
+
 	// Soleil
     liste_corps.tab[0] = new Corps(100000.0, 30.0, Vector(0.0, 0.0), Vector(960.0, 540.0), Vector());
     liste_corps.nb_corps++;
@@ -109,7 +109,7 @@ int main(int argc, char* argv[]) {
             *liste_corps.tab[i], liste_corps, GRAVITATIONAL_CONSTANT
         );
     }
-    */
+
 
 	// Boucle
 	while (running) {

@@ -111,18 +111,3 @@ Corps *fusion_deux_corps(Corps &un, Corps &deux){
     Corps *nouveau_corps = new Corps(new_mass, new_rayon, new_speed, new_position, new_acc);
     return nouveau_corps;
 }
-
-void boucle_de_verification_fusion(Tableau_de_Corps &tous_les_corps){
-    for (int i = 0; i < tous_les_corps.nb_corps; i++){
-        for (int j = 0; j < tous_les_corps.nb_corps; j++){
-            if (i == j)
-                continue;
-            else if (!collide_corps(tous_les_corps.tab[i], tous_les_corps.tab[j]))
-                continue;
-            else{
-                Corps *new_corps = fusion_deux_corps(*tous_les_corps.tab[i], *tous_les_corps.tab[j]);
-                tous_les_corps.maj_tab_apres_fusion(i, j, new_corps);
-            }
-        }
-    }
-}
