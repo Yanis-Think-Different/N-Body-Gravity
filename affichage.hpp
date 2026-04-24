@@ -2,7 +2,7 @@
 #ifndef AFFICHAGE
 #define AFFICHAGE
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include "corps.hpp"
 
 void dessine_cercle(SDL_Renderer *renderer, Corps *actuelle);

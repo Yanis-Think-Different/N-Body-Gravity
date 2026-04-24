@@ -1,4 +1,4 @@
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <iostream>
 #include <cstdlib>
 #include <random>
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
 	Tableau_de_Corps liste_corps = Tableau_de_Corps(NB_CORPS);
 
 	//------------------------------------------------------------Pour du random pure et dure---------------------------------------------------------------//
-	
+
 	for (int i = 0; i < NB_CORPS; i++){
 	    Vector speed = Vector(rand_vector(gen), rand_vector(gen));
 		Vector position = Vector(rand_posistion_x(gen), rand_posistion_y(gen));
@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
 	for (int i = 0; i < liste_corps.nb_corps; i++){
         choisis_couleur(liste_corps.tab[i], liste_corps.mass_max);
 	}
-	
+
 
 	//------------------------------------------------------------Imitation du systeme solaire---------------------------------------------------------------//
     /*
