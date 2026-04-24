@@ -19,7 +19,7 @@ Le programme simule un ensemble de corps soumis à la gravité newtonienne dans 
 ## Dépendances
 
 - Un compilateur C++ supportant C++17 (g++, clang, MSVC…)
-- [SDL2](https://www.libsdl.org/) (développement)
+- [SDL2](https://www.libsdl.org/) 
 
 ### Installation de SDL2
 
